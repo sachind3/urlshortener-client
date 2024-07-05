@@ -1,6 +1,6 @@
 //Landing.tsx
 import URLForm from "@/components/shared/URLForm";
-import BANNER from "@/assets/banner.png";
+import BANNER from "@/assets/banner-img.png";
 const Landing = () => {
   return (
     <section className="py-6">
