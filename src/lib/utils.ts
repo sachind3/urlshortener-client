@@ -7,6 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getClientUrl() {
   return import.meta.env.VITE_ENVIRONMENT_MODE === "development"
-    ? "http://localhost:5173"
-    : "http://localhost:5173";
+    ? import.meta.env.VITE_CLIENT_DEV
+    : import.meta.env.VITE_CLIENT_PROD;
 }
