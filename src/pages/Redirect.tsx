@@ -62,7 +62,7 @@ const Redirect = () => {
     }
   }, [storeResult, data]);
 
-  return <div>Redirect</div>;
+  return <div>Redirecting...</div>;
 };
 
 export default Redirect;

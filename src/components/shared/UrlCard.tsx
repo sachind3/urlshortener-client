@@ -67,17 +67,19 @@ const UrlCard = ({
   };
 
   return (
-    <div className="border rounded-md p-4 flex flex-col md:flex-row gap-3">
+    <div className="border rounded-md p-3 md:p-4 flex flex-wrap gap-3 justify-between">
       <div className="w-24" ref={qrRef}>
-        <QRCode
-          size={96}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value={`${getClientUrl()}/${short_url}`}
-          viewBox={`0 0 96 96`}
-        />
-        <canvas ref={canvasRef} style={{ display: "none" }} />
+        <Link to={`/link/${_id}`}>
+          <QRCode
+            size={96}
+            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            value={`${getClientUrl()}/${short_url}`}
+            viewBox={`0 0 96 96`}
+          />
+          <canvas ref={canvasRef} style={{ display: "none" }} />
+        </Link>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 order-3 md:order-2">
         <Link to={`/link/${_id}`} className="text-lg font-bold inline-block">
           {title}
         </Link>
@@ -100,7 +102,7 @@ const UrlCard = ({
           </p>
         )}
       </div>
-      <div className="flex gap-3 md:ml-auto">
+      <div className="flex gap-3 md:ml-auto order-2 md:order-3">
         <Button
           variant="outline"
           size="icon"

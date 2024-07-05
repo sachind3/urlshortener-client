@@ -1,8 +1,8 @@
 //DeviceInfo.tsx
 import { ArcElement, Chart } from "chart.js";
 import { defaults } from "chart.js/auto";
-import { Doughnut } from "react-chartjs-2";
 import { memo } from "react";
+import { Bar } from "react-chartjs-2";
 
 Chart.register(ArcElement);
 
@@ -39,29 +39,21 @@ const DeviceInfo = memo(({ data = [] }: DeviceInfoProps) => {
   }));
 
   return (
-    <div style={{ width: "100%", height: 300 }}>
-      <Doughnut
-        data={{
-          labels: result.map((data) => data.device),
-          datasets: [
-            {
-              label: "Count",
-              data: result.map((data) => data.count),
-              backgroundColor: [
-                "rgba(43, 63, 229, 0.8)",
-                "rgba(250, 192, 19, 0.8)",
-                "rgba(253, 135, 135, 0.8)",
-              ],
-              borderColor: [
-                "rgba(43, 63, 229, 0.8)",
-                "rgba(250, 192, 19, 0.8)",
-                "rgba(253, 135, 135, 0.8)",
-              ],
-            },
-          ],
-        }}
-      />
-    </div>
+    <>
+      <div style={{ width: "100%", height: 300 }}>
+        <Bar
+          data={{
+            labels: result.map((data) => data.device),
+            datasets: [
+              {
+                label: "Count",
+                data: result.map((data) => data.count),
+              },
+            ],
+          }}
+        />
+      </div>
+    </>
   );
 });
 

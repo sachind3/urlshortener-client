@@ -1,17 +1,23 @@
 //LinkPage.tsx
 import LoaderCard from "@/components/shared/LoaderCard";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getClientUrl } from "@/lib/utils";
 import { useGetClickDataQuery } from "@/services/click";
 import { useDeleteUrlMutation, useGetUrlQuery } from "@/services/url";
-import { Check, Copy, Download, Link as LinkIcon, Trash } from "lucide-react";
+import {
+  Check,
+  Copy,
+  Download,
+  Link as LinkIcon,
+  Trash,
+  MapPin,
+  MonitorSmartphone,
+} from "lucide-react";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import QRCode from "react-qr-code";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const CountStatsCard = lazy(() => import("@/components/shared/CountStatsCard"));
 const DeviceInfo = lazy(() => import("@/components/shared/DeviceInfo"));
 const LocationStats = lazy(() => import("@/components/shared/LocationStats"));
 
@@ -146,28 +152,51 @@ const LinkPage = () => {
             </div>
           </div>
 
-          <Card className="w-full sm:w-3/5">
-            <CardHeader>
-              <CardTitle className="text-4xl font-extrabold">Stats</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <div className="grid lg:grid-cols-2 gap-4">
-                <Suspense fallback={<LoaderCard width="100%" height="120px" />}>
-                  <CountStatsCard
-                    title="Total Clicks"
-                    count={clickData?.length}
-                    icon={<LinkIcon />}
-                  />
-                </Suspense>
-                <Suspense fallback={<LoaderCard width="100%" height="120px" />}>
-                  <DeviceInfo data={clickData} />
-                </Suspense>
+          <div className="w-full sm:w-3/5">
+            <div className="grid md:grid-cols-2 [&>div]:border border">
+              <div className="flex flex-col">
+                <div className="text-lg font-bold border-b p-3 flex items-center justify-between">
+                  Total Clicks
+                  <LinkIcon size={15} />
+                </div>
+                <div className="p-3 h-full">
+                  <Suspense
+                    fallback={<LoaderCard width="100%" height="120px" />}
+                  >
+                    <div className="text-6xl w-full h-full items-center justify-center flex">
+                      {clickData?.length}
+                    </div>
+                  </Suspense>
+                </div>
               </div>
-              <Suspense fallback={<LoaderCard width="100%" height="200px" />}>
-                <LocationStats data={clickData} />
-              </Suspense>
-            </CardContent>
-          </Card>
+              <div className="flex flex-col">
+                <div className="text-lg font-bold border-b p-3 flex items-center justify-between">
+                  Device Info
+                  <MonitorSmartphone size={15} />
+                </div>
+                <div className="p-3">
+                  <Suspense
+                    fallback={<LoaderCard width="100%" height="200px" />}
+                  >
+                    <DeviceInfo data={clickData} />
+                  </Suspense>
+                </div>
+              </div>
+              <div className="md:col-span-2 flex flex-col">
+                <div className="text-lg font-bold border-b p-3 flex items-center justify-between">
+                  Location Info
+                  <MapPin size={15} />
+                </div>
+                <div className="p-3">
+                  <Suspense
+                    fallback={<LoaderCard width="100%" height="200px" />}
+                  >
+                    <LocationStats data={clickData} />
+                  </Suspense>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     );

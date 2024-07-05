@@ -60,9 +60,9 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/link/:id" element={<LinkPage />} />
         </Route>
-        <Route path="/:id" element={<Redirect />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
+      <Route path="/:id" element={<Redirect />} />
     </Routes>
   );
 };

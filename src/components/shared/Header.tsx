@@ -12,10 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { setLogout } from "@/features/auth/authSlice";
 import { useLogoutMutation } from "@/services/auth";
-import { bigEars } from "@dicebear/collection";
-import { createAvatar } from "@dicebear/core";
 import { Link as LinkIcon, LogOut } from "lucide-react";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -34,16 +32,13 @@ const Header = () => {
     }
   }, [logoutIsSuccess, logoutData, dispatch]);
 
-  const avatar = useMemo(() => {
-    return createAvatar(bigEars, {
-      size: 128,
-      backgroundColor: ["ec4899"],
-    }).toDataUri();
-  }, []);
   return (
     <header className="py-3 border-b sticky top-0 z-30 bg-background">
       <div className="container mx-auto px-4 flex gap-4 justify-between items-center">
-        <Link to="/" className="text-3xl font-black text-gradient">
+        <Link
+          to={user ? `/dashboard` : `/`}
+          className="text-3xl font-black text-gradient"
+        >
           LINKLITE
         </Link>
 
@@ -53,7 +48,10 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="outline-none">
                   <Avatar className="w-9 h-9">
-                    <AvatarImage src={avatar} alt={user.name} />
+                    <AvatarImage
+                      src={"https://avatar.iran.liara.run/public"}
+                      alt={user.name}
+                    />
                     <AvatarFallback>
                       {user.name.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
@@ -78,7 +76,7 @@ const Header = () => {
               <Button asChild variant={"outline"}>
                 <Link to="/login">Login</Link>
               </Button>
-              <Button asChild>
+              <Button asChild className="hidden md:block">
                 <Link to="/register">Register Now</Link>
               </Button>
             </>

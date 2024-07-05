@@ -16,7 +16,12 @@ import { useLoginMutation } from "@/services/auth";
 import { Formik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import * as Yup from "yup";
 
 const AuthSchema = Yup.object().shape({
@@ -126,6 +131,12 @@ const Login = () => {
                   <Button type="submit" disabled={isLoading} className="w-full">
                     {isLoading ? "Signing in..." : "Sign in"}
                   </Button>
+                </div>
+                <div className="text-sm text-center">
+                  Don't have an account?{" "}
+                  <Link to="/register" className="underline">
+                    Register here
+                  </Link>
                 </div>
               </form>
             )}

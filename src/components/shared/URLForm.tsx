@@ -21,7 +21,7 @@ const URLForm = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-2 flex-col md:flex-row">
         <div className="relative w-full grow">
           <Link2Icon className="absolute left-4 -translate-y-1/2 top-1/2" />
           <Input

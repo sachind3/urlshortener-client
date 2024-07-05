@@ -47,8 +47,6 @@ const LocationStats = memo(({ data = [] }: LocationStatsProps) => {
             {
               label: "Count",
               data: cities.map((data) => data.count),
-              backgroundColor: "#064FF0",
-              borderColor: "#064FF0",
             },
           ],
         }}

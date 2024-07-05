@@ -4,9 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const CountStatsCard = ({ title, count, icon }: ITotalStats) => {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-2xl font-medium">{title}</CardTitle>
+    <Card className="w-full">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 p-3 md:p-6 pb-2">
+        <CardTitle className="text-lg md:text-2xl font-medium">
+          {title}
+        </CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
