@@ -10,3 +10,8 @@ export function getClientUrl() {
     ? import.meta.env.VITE_CLIENT_DEV
     : import.meta.env.VITE_CLIENT_PROD;
 }
+export function getServerUrl() {
+  return import.meta.env.VITE_ENVIRONMENT_MODE === "development"
+    ? import.meta.env.VITE_SERVER_DEV
+    : import.meta.env.VITE_SERVER_PROD;
+}

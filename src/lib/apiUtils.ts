@@ -1,13 +1,15 @@
 // apiUtils.ts
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getServerUrl } from "./utils";
 
 export const getToken = (): string | null => {
   return localStorage.getItem("token");
 };
 
+const baseServerUrl = getServerUrl();
+
 export const baseQueryWithAuth = fetchBaseQuery({
-  //baseUrl: "http://localhost:5000/api",
-  baseUrl: `${import.meta.env.VITE_SERVER_URL}/api`,
+  baseUrl: `${baseServerUrl}/api`,
   prepareHeaders: (headers) => {
     const token = getToken();
     if (token) {
